@@ -38,8 +38,8 @@ items:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 1Gi
-      storageClassName: hostpath-provisioner
+          storage: 4Gi
+      storageClassName: ocs-external-storagecluster-ceph-rbd
       volumeMode: Filesystem
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig

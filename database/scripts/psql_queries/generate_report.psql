@@ -73,7 +73,7 @@ CREATE OR REPLACE FUNCTION generate_report (frequency_ text)
         WHERE interval_start >= ' || quote_literal(interval_start_date) || ' and interval_start < ' || quote_literal(interval_end_date) || '
         GROUP BY (namespace, pod, node))
       AS t
-      GROUP BY namespace ORDER BY (substring(namespace, E''openshift''), "pods_avg_usage_cpu_core_total[millicore]") desc returning *';
+      GROUP BY namespace ORDER BY substring(namespace, E''openshift'') desc returning *';
 end; $$ LANGUAGE plpgsql;
 
 
@@ -144,7 +144,7 @@ CREATE OR REPLACE FUNCTION generate_report_percentage (frequency_ text)
         WHERE interval_start >= ' || quote_literal(interval_start_date) || ' and interval_start < ' || quote_literal(interval_end_date) || ' and length(node) > 0
         GROUP BY (namespace, pod, node))
       AS t
-      GROUP BY namespace ORDER BY (substring(namespace, E''openshift''), "pods_avg_usage_cpu_core_consumption_percentage[%]") desc returning *';
+      GROUP BY namespace ORDER BY substring(namespace, E''openshift'') desc returning *';
 end; $$ LANGUAGE plpgsql;
 
 
