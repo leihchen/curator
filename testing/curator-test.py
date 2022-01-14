@@ -37,7 +37,7 @@ class TestUnzipBackup(unittest.TestCase):
         for csv_file in unzipped_csv:
             with open(os.path.join(self.unzip_dir_golden, csv_file), 'r') as f:
                 row_count_golden += len(list(csv.reader(f))) - 1  # exclude header
-        self.assertEqual(row_count_golden, row_count)
+        self.assertEqual(row_count_golden, row_count[0])
         # new_hist = get_history_data()
         # self.assertIsNotNone(new_hist)
         # new_hist_list = set(new_hist.split('~'))
